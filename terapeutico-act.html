@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Caminho para uma Nova Forma de se Relacionar Consigo Mesmo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F4F0E8;
+  --surface: #FDFAF5;
+  --surface2: #F0ECE3;
+  --ink: #2C2416;
+  --ink-mid: #6B5E4A;
+  --ink-light: #9B8E7A;
+  --sage: #4A7B5E;
+  --sage-light: #7BA88E;
+  --sage-pale: rgba(74,123,94,0.10);
+  --lavender: #7B6A9E;
+  --lavender-pale: rgba(123,106,158,0.10);
+  --amber: #B8833A;
+  --amber-pale: rgba(184,131,58,0.10);
+  --rose: #9E5A5A;
+  --rose-pale: rgba(158,90,90,0.10);
+  --sky: #4A7B9E;
+  --sky-pale: rgba(74,123,158,0.10);
+  --border: rgba(44,36,22,0.10);
+  --shadow: 0 4px 30px rgba(44,36,22,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  font-family: 'Jost', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── WELCOME SCREEN ─── */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.welcome-inner {
+  max-width: 580px;
+  width: 100%;
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  animation: fadeUp 0.6s ease both;
+}
+
+.welcome-emblem {
+  width: 64px;
+  height: 64px;
+  background: var(--sage-pale);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 28px;
+}
+
+.welcome-inner h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.welcome-inner .subtitle {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-weight: 300;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+.welcome-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.info-card {
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.info-card .label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 4px;
+}
+
+.info-card p {
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.welcome-disclaimer {
+  background: var(--lavender-pale);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12px;
+  color: var(--lavender);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.welcome-disclaimer strong { font-weight: 500; }
+
+.btn-start {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--sage);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-start:hover { background: #3D6B50; transform: translateY(-1px); }
+
+/* RECOVER CODE */
+.recover-area {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.recover-area p {
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+}
+
+.recover-row {
+  display: flex;
+  gap: 8px;
+}
+
+.recover-row input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: 3px;
+  text-align: center;
+  outline: none;
+}
+
+.recover-row button {
+  padding: 10px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  color: var(--ink-mid);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ─── MAIN APP ─── */
+#app { display: none; }
+#app.visible { display: block; }
+
+/* ─── HEADER ─── */
+.site-header {
+  background: var(--ink);
+  padding: 48px 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(74,123,94,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(123,106,158,0.15) 0%, transparent 50%);
+}
+
+.header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.site-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 600;
+  color: white;
+  line-height: 1.25;
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto 12px;
+}
+
+.site-header h1 em {
+  font-style: italic;
+  color: rgba(122,168,142,0.9);
+}
+
+.header-sub {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.wave-sep {
+  height: 48px;
+  background: var(--ink);
+  position: relative;
+  margin-bottom: -1px;
+}
+
+.wave-sep::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 48px;
+  background: var(--bg);
+  clip-path: ellipse(56% 100% at 50% 100%);
+}
+
+/* ─── LAYOUT ─── */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 12px 24px 100px;
+}
+
+/* ─── INTRO CARD ─── */
+.intro-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--sage);
+}
+
+.intro-card p {
+  font-size: 14.5px;
+  color: var(--ink-mid);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.intro-card p:last-child { margin-bottom: 0; }
+
+/* ─── SECTION CARDS ─── */
+.section-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.5s ease both;
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+
+.card-sage::before { background: var(--sage); }
+.card-lavender::before { background: var(--lavender); }
+.card-amber::before { background: var(--amber); }
+.card-rose::before { background: var(--rose); }
+.card-sky::before { background: var(--sky); }
+
+.section-num {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.num-sage { color: var(--sage); }
+.num-lavender { color: var(--lavender); }
+.num-amber { color: var(--amber); }
+.num-rose { color: var(--rose); }
+.num-sky { color: var(--sky); }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.section-body {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.section-body strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ─── SUBSECTIONS ─── */
+.subsection {
+  background: var(--surface2);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+.subsection-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subsection-title .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-sage { background: var(--sage); }
+.dot-lavender { background: var(--lavender); }
+.dot-amber { background: var(--amber); }
+
+.subsection p {
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ─── GLASSES VISUAL ─── */
+.glasses-visual {
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--sage-pale);
+  border-radius: 14px;
+  border: 1px dashed rgba(74,123,94,0.3);
+}
+
+.glasses-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.glasses-caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--sage);
+  line-height: 1.5;
+}
+
+/* ─── CHESS BOARD VISUAL ─── */
+.chess-visual {
+  margin: 24px 0;
+  padding: 28px 24px;
+  background: var(--surface2);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.chess-board {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 28px);
+  grid-template-rows: repeat(4, 28px);
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.chess-sq {
+  border-radius: 4px;
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.chess-sq.light { background: rgba(44,36,22,0.06); }
+.chess-sq.dark { background: rgba(44,36,22,0.16); }
+.chess-sq.white-piece::after { content: '♙'; color: #e8e0d0; }
+.chess-sq.black-piece::after { content: '♟'; color: var(--ink); }
+
+.chess-caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.chess-highlight {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--sage);
+  display: block;
+  margin-top: 8px;
+}
+
+/* ─── TIMELINE VISUAL ─── */
+.timeline-visual {
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--surface2);
+  border-radius: 14px;
+}
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 10px;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(74,123,94,0.3), rgba(74,123,94,0.6), rgba(74,123,94,0.9), rgba(74,123,94,0.6), rgba(74,123,94,0.3));
+  transform: translateY(-50%);
+}
+
+.tl-point {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--sage);
+}
+
+.tl-dot.now {
+  width: 20px; height: 20px;
+  background: var(--sage);
+  box-shadow: 0 0 0 4px rgba(74,123,94,0.2);
+}
+
+.tl-label {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--ink-light);
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.tl-label.now { color: var(--sage); font-weight: 500; }
+
+/* ─── CLOUDS VISUAL ─── */
+.clouds-visual {
+  margin: 20px 0;
+  padding: 28px 24px;
+  background: linear-gradient(180deg, #dce8f0 0%, #e8edf2 100%);
+  border-radius: 16px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.clouds-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cloud {
+  display: inline-block;
+  background: rgba(255,255,255,0.85);
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  font-weight: 300;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  animation: cloudFloat 4s ease-in-out infinite;
+}
+
+.cloud:nth-child(2) { animation-delay: 0.8s; }
+.cloud:nth-child(3) { animation-delay: 1.6s; }
+.cloud:nth-child(4) { animation-delay: 2.4s; }
+
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.clouds-caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--sky);
+  margin-top: 4px;
+}
+
+/* ─── EXERCISE BLOCKS ─── */
+.exercise-block {
+  background: var(--surface2);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+}
+
+.block-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.tag-exercise { background: var(--sage-pale); color: var(--sage); }
+.tag-reflect { background: var(--lavender-pale); color: var(--lavender); }
+.tag-important { background: var(--amber-pale); color: var(--amber); }
+.tag-example { background: var(--rose-pale); color: var(--rose); }
+
+.exercise-block p {
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.exercise-block p:last-child { margin-bottom: 0; }
+
+.exercise-block ul, .exercise-block ol {
+  margin: 10px 0 10px 20px;
+}
+
+.exercise-block li {
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 5px;
+}
+
+/* ─── TEXTAREA ─── */
+.response-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+  margin-top: 14px;
+  display: block;
+}
+
+.response-area {
+  width: 100%;
+  min-height: 100px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.7;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.response-area:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(74,123,94,0.08);
+}
+
+.response-area::placeholder { color: var(--ink-light); }
+
+.save-indicator {
+  font-size: 11px;
+  color: var(--sage);
+  margin-top: 5px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.save-indicator.show { opacity: 1; }
+
+/* ─── REWRITE AREA ─── */
+.rewrite-area {
+  margin-top: 12px;
+}
+
+.rewrite-area label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ─── IDENTITY CARDS ─── */
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.identity-card {
+  border-radius: 14px;
+  padding: 18px 16px;
+  text-align: center;
+}
+
+.id-icon { font-size: 24px; margin-bottom: 8px; }
+
+.id-name {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.id-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.id-card-1 { background: var(--sage-pale); color: var(--sage); }
+.id-card-2 { background: var(--lavender-pale); color: var(--lavender); }
+.id-card-3 { background: var(--amber-pale); color: var(--amber); }
+
+.id-example {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12.5px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* ─── BOTTOM TOOLBAR ─── */
+.bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--ink);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 100;
+}
+
+.code-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.code-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+#code-value {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--sage-light);
+  letter-spacing: 3px;
+  font-family: monospace;
+}
+
+.bottom-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-tool {
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Jost', sans-serif;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-tool:hover {
+  background: rgba(255,255,255,0.14);
+  color: white;
+}
+
+.btn-tool.primary {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: white;
+}
+
+.btn-tool.primary:hover { background: #3D6B50; }
+
+/* ─── FINAL MESSAGE ─── */
+.final-card {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 44px 40px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(74,123,94,0.3) 0%, transparent 60%);
+}
+
+.final-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 20px;
+  position: relative;
+  line-height: 1.3;
+}
+
+.final-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 540px;
+  margin: 0 auto 14px;
+  position: relative;
+}
+
+.final-card p:last-child { margin-bottom: 0; }
+
+.final-card em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(122,168,142,0.85);
+  position: relative;
+}
+
+.footer-note {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+.footer-note p {
+  font-size: 11.5px;
+  color: var(--ink-light);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ─── STEPS ─── */
+.steps-list {
+  list-style: none;
+  counter-reset: step;
+  margin: 12px 0;
+}
+
+.steps-list li {
+  counter-increment: step;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.steps-list li::before {
+  content: counter(step);
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--bg);
+  margin-top: 2px;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-card:nth-child(1) { animation-delay: 0.05s; }
+.section-card:nth-child(2) { animation-delay: 0.10s; }
+.section-card:nth-child(3) { animation-delay: 0.15s; }
+.section-card:nth-child(4) { animation-delay: 0.20s; }
+.section-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .section-card, .intro-card { padding: 24px 20px; }
+  .identity-grid { grid-template-columns: 1fr; }
+  .welcome-info { grid-template-columns: 1fr; }
+  .welcome-inner { padding: 32px 24px; }
+  .bottom-bar { flex-wrap: wrap; }
+  .code-display { flex: 1; }
+  .btn-tool { font-size: 10.5px; padding: 7px 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── WELCOME SCREEN ─── -->
+<div id="welcome-screen">
+  <div class="welcome-inner">
+    <div class="welcome-emblem">🌱</div>
+    <h1>O Caminho para uma Nova Forma de se Relacionar Consigo Mesmo</h1>
+    <p class="subtitle">Material terapêutico de apoio · ACT</p>
+
+    <div class="welcome-info">
+      <div class="info-card">
+        <div class="label">⏱ Tempo estimado</div>
+        <p>45 a 60 minutos para completar o material com atenção</p>
+      </div>
+      <div class="info-card">
+        <div class="label">🔒 Privacidade</div>
+        <p>Suas respostas ficam salvas apenas neste dispositivo e navegador</p>
+      </div>
+      <div class="info-card">
+        <div class="label">🔢 Código pessoal</div>
+        <p>Ao final, um código de 6 dígitos resume suas respostas para compartilhar com seu terapeuta</p>
+      </div>
+      <div class="info-card">
+        <div class="label">📩 Compartilhamento</div>
+        <p>Você pode enviar suas respostas por e-mail ao finalizar</p>
+      </div>
+    </div>
+
+    <div class="welcome-disclaimer">
+      <strong>Importante:</strong> Este material é um suporte educativo e complementa (não substitui) o acompanhamento profissional. Converse com seu terapeuta sobre suas respostas.
+    </div>
+
+    <button class="btn-start" onclick="iniciar()">Confirmar e iniciar →</button>
+
+    <div class="recover-area">
+      <p>Já preencheu antes? Insira seu código para tentar recuperar suas respostas (funciona apenas neste mesmo dispositivo e navegador):</p>
+      <div class="recover-row">
+        <input type="text" id="recover-input" placeholder="000000" maxlength="6" inputmode="numeric">
+        <button onclick="recuperar()">Recuperar</button>
+      </div>
+      <div id="recover-msg" style="font-size:12px;margin-top:8px;color:var(--rose);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MAIN APP ─── -->
+<div id="app">
+
+<div class="site-header">
+  <div class="header-tag">Guia Terapêutico · ACT</div>
+  <h1>O Caminho para uma <em>nova forma</em> de se relacionar consigo mesmo</h1>
+  <p class="header-sub">Material de apoio para uso individual ou entre sessões terapêuticas.</p>
+</div>
+<div class="wave-sep"></div>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <p>No último exercício, trabalhamos a habilidade de observar os próprios pensamentos com maior distanciamento. Em determinados contextos, tratar pensamentos como verdades absolutas, buscar explicações fixas para eles ou tentar controlar emoções pode fazer com que a pessoa fique ainda mais "presa" a essas experiências internas.</p>
+    <p>Isso acontece especialmente com avaliações, julgamentos e ideias rígidas sobre si mesmo, que frequentemente aumentam comportamentos de esquiva e afastamento de experiências difíceis.</p>
+    <p>A dificuldade se intensifica quando nos confundimos completamente com aquilo que pensamos. Nesse estado, os pensamentos deixam de ser percebidos como eventos mentais passageiros e passam a ser vividos como verdades sobre a realidade, sobre os outros e sobre si mesmo.</p>
+  </div>
+
+  <!-- ─── SEÇÃO 1 ─── -->
+  <div class="section-card card-sage">
+    <div class="section-num num-sage">Seção 01</div>
+    <h2 class="section-title">Quando os rótulos passam a definir quem você é</h2>
+
+    <p class="section-body">A mente humana tende a organizar a experiência criando explicações e rótulos sobre quem somos. Essas ideias — como <strong>"sou assim"</strong>, <strong>"não consigo"</strong>, <strong>"sempre fui desse jeito"</strong> — podem parecer verdades absolutas, mas são, na realidade, interpretações construídas ao longo da vida.</p>
+
+    <p class="section-body">Quando esses rótulos se tornam muito rígidos, eles limitam a forma como você se percebe e age. Aos poucos, você pode começar a agir de acordo com essas definições, como se estivesse tentando provar que elas são verdadeiras — mesmo quando isso gera sofrimento.</p>
+
+    <p class="section-body">Isso acontece porque a mente busca coerência: ela prefere uma história conhecida (mesmo dolorosa) do que lidar com o desconhecido.</p>
+
+    <div class="glasses-visual">
+      <div class="glasses-icon">🕶️</div>
+      <div class="glasses-caption">É como usar um óculos antigo por tanto tempo que você esquece que está olhando através dele.</div>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-exercise">✍️ Para refletir</span>
+      <p>Complete as frases abaixo, sem pensar muito. Deixe a resposta que surgir primeiro:</p>
+
+      <span class="response-label">Eu sou uma pessoa que…</span>
+      <textarea class="response-area" data-key="s1_q1" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q1">✓ salvo</div>
+
+      <span class="response-label">Eu tenho dificuldade em…</span>
+      <textarea class="response-area" data-key="s1_q2" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q2">✓ salvo</div>
+
+      <span class="response-label">Eu sou assim porque…</span>
+      <textarea class="response-area" data-key="s1_q3" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q3">✓ salvo</div>
+
+      <span class="response-label">Eu sempre…</span>
+      <textarea class="response-area" data-key="s1_q4" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q4">✓ salvo</div>
+
+      <span class="response-label">Eu nunca consigo…</span>
+      <textarea class="response-area" data-key="s1_q5" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q5">✓ salvo</div>
+
+      <span class="response-label">Os outros me veem como…</span>
+      <textarea class="response-area" data-key="s1_q6" placeholder="Escreva aqui..." rows="2"></textarea>
+      <div class="save-indicator" id="si_s1_q6">✓ salvo</div>
+    </div>
+
+    <div class="exercise-block" style="border-left:3px solid var(--lavender);">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p><strong>Agora observe:</strong> essas frases descrevem fatos ou são interpretações sobre você?</p>
+      <p>De onde essas ideias podem ter surgido? Elas lembram falas que você ouviu com frequência? Foram construídas a partir de experiências específicas, críticas, comparações ou expectativas?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s1_reflexao" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s1_reflexao">✓ salvo</div>
+    </div>
+  </div>
+
+  <!-- ─── SEÇÃO 2 ─── -->
+  <div class="section-card card-lavender">
+    <div class="section-num num-lavender">Seção 02</div>
+    <h2 class="section-title">Diferentes formas de se perceber</h2>
+    <p class="section-body">Existem maneiras distintas de se relacionar com a própria experiência. Conhecer essas diferenças pode ajudar você a enxergar a si mesmo de um ângulo novo.</p>
+
+    <div class="identity-grid">
+      <div class="identity-card id-card-1">
+        <div class="id-icon">📖</div>
+        <div class="id-name">A história</div>
+        <div class="id-desc">A narrativa construída ao longo do tempo, feita de memórias e conclusões.</div>
+        <div class="id-example">"Sou alguém que sempre falha."</div>
+      </div>
+      <div class="identity-card id-card-2">
+        <div class="id-icon">🌊</div>
+        <div class="id-name">A experiência</div>
+        <div class="id-desc">Perceber no presente o que está acontecendo: pensamentos, emoções, sensações.</div>
+        <div class="id-example">"Agora estou sentindo tristeza."</div>
+      </div>
+      <div class="identity-card id-card-3">
+        <div class="id-icon">👁️</div>
+        <div class="id-name">O observador</div>
+        <div class="id-desc">A parte de você que percebe tudo isso acontecendo, constante ao longo da vida.</div>
+        <div class="id-example">"Existe algo que observa."</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title"><span class="dot dot-lavender"></span> A história sobre si mesmo</div>
+      <p>É a narrativa que você construiu ao longo do tempo, feita de memórias, julgamentos e conclusões. Ela ajuda a organizar a identidade, mas pode se tornar rígida quando a pessoa passa a acreditar que é exatamente aquela história.</p>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>Em que momentos você começou a acreditar nessas definições? Quem ou o que influenciou a maneira como você passou a se enxergar?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s2_historia" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s2_historia">✓ salvo</div>
+    </div>
+
+    <div class="subsection" style="margin-top:16px;">
+      <div class="subsection-title"><span class="dot dot-sage"></span> A perspectiva que observa</div>
+      <p>Além dos pensamentos, emoções e histórias, existe uma parte de você que percebe tudo isso acontecendo. Essa perspectiva esteve presente na infância, na adolescência, nos momentos difíceis, nos momentos felizes. Seu corpo mudou, seus pensamentos mudaram, suas emoções mudaram. Mas existe algo constante: o lugar a partir do qual você observa sua experiência.</p>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-exercise">✍️ Exercício — Recontando sua história</span>
+      <p>Escreva um episódio difícil da sua vida, de maneira detalhada, incluindo como você interpretou a situação, o que sentiu e o impacto que isso teve em você.</p>
+
+      <span class="response-label">Escreva o episódio aqui:</span>
+      <textarea class="response-area" data-key="s2_episodio" placeholder="Descreva a situação com detalhes: o que aconteceu, como você interpretou, o que sentiu e como isso te afetou..." rows="7"></textarea>
+      <div class="save-indicator" id="si_s2_episodio">✓ salvo</div>
+
+      <p style="margin-top:16px;">Agora, <strong>releia o que escreveu</strong> e identifique mentalmente: quais partes são fatos observáveis (o que realmente aconteceu) e quais são interpretações (o que você concluiu sobre isso)?</p>
+
+      <span class="response-label">Tente reescrever a situação com outra forma de interpretação:</span>
+      <textarea class="response-area" data-key="s2_reescrita" placeholder="Use os mesmos fatos, mas experimente um ângulo diferente de interpretação..." rows="6"></textarea>
+      <div class="save-indicator" id="si_s2_reescrita">✓ salvo</div>
+    </div>
+
+    <div class="exercise-block" style="border-left:3px solid var(--lavender);">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>As conclusões que você tirou naquele momento continuam sendo as únicas possíveis hoje? Outras pessoas poderiam interpretar a mesma situação de formas diferentes?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s2_reflexao" placeholder="Escreva aqui..." rows="3"></textarea>
+      <div class="save-indicator" id="si_s2_reflexao">✓ salvo</div>
+    </div>
+  </div>
+
+  <!-- ─── SEÇÃO 3 ─── -->
+  <div class="section-card card-amber">
+    <div class="section-num num-amber">Seção 03</div>
+    <h2 class="section-title">A metáfora do tabuleiro de xadrez</h2>
+
+    <div class="chess-visual">
+      <div class="chess-board" id="chess-board"></div>
+      <div class="chess-caption">
+        As peças representam pensamentos e emoções — agradáveis e difíceis. Mas e se você não fosse nenhuma das peças?
+        <span class="chess-highlight">E se você fosse o próprio tabuleiro?</span>
+      </div>
+    </div>
+
+    <p class="section-body">Imagine um tabuleiro de xadrez gigante. Nele existem <strong>peças brancas</strong> (pensamentos agradáveis, emoções positivas, lembranças boas, sensações de segurança) e <strong>peças pretas</strong> (medo, culpa, tristeza, insegurança, pensamentos difíceis).</p>
+
+    <p class="section-body">Frequentemente passamos a vida tentando fazer as peças brancas vencerem e eliminar as pretas. Mas essa luta nunca termina. Quanto mais tentamos expulsar certas emoções ou pensamentos, mais presos à batalha ficamos.</p>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-important">⚡ Importante</span>
+      <p>O tabuleiro sustenta todas as peças. Ele permite que a batalha aconteça, mas não precisa lutar nela. As peças mudam de posição o tempo todo, entram e saem do jogo, mas o tabuleiro continua ali.</p>
+      <p style="margin-top:8px;">Da mesma forma, pensamentos e emoções vêm e vão, enquanto a parte de você que observa permanece.</p>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>Ao longo da sua vida, você aprendeu que precisava "vencer" emoções difíceis? Como as pessoas ao seu redor costumavam lidar com tristeza, medo, insegurança ou vulnerabilidade?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s3_tabuleiro" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s3_tabuleiro">✓ salvo</div>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-exercise">✍️ Exercício — "Eu observo, portanto não sou isso"</span>
+      <p>Olhe para um objeto ao seu redor e perceba: <em>"Estou observando esta cadeira."</em></p>
+      <p>Você observa a cadeira, portanto você não é a cadeira.</p>
+      <p>Agora faça o mesmo:</p>
+      <ul>
+        <li>Com uma sensação: <em>"Estou percebendo ansiedade."</em></li>
+        <li>Com um pensamento: <em>"Estou tendo o pensamento de que sou incapaz."</em></li>
+      </ul>
+      <p style="margin-top:10px;">Perceba que existe uma diferença entre você e aquilo que você observa.</p>
+      <span class="response-label">O que você percebeu ao fazer esse exercício?</span>
+      <textarea class="response-area" data-key="s3_observo" placeholder="Escreva aqui..." rows="3"></textarea>
+      <div class="save-indicator" id="si_s3_observo">✓ salvo</div>
+    </div>
+  </div>
+
+  <!-- ─── SEÇÃO 4 ─── -->
+  <div class="section-card card-rose">
+    <div class="section-num num-rose">Seção 04</div>
+    <h2 class="section-title">Treinando a atenção no momento presente</h2>
+
+    <p class="section-body">A atenção frequentemente fica presa no passado, em preocupações futuras ou em análises mentais constantes. Desenvolver atenção ao momento presente é uma <strong>habilidade que pode ser praticada</strong>.</p>
+
+    <p class="section-body">Trata-se de direcionar a atenção de forma intencional, com abertura e curiosidade, para o que está acontecendo agora. Isso não significa eliminar desconfortos, mas aprender a estar com eles de maneira diferente.</p>
+
+    <div class="timeline-visual">
+      <div class="timeline-track">
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Passado<br>distante</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Passado<br>recente</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot now"></div>
+          <div class="tl-label now">AGORA</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Futuro<br>próximo</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Futuro<br>distante</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--ink-light);text-align:center;">Observe onde sua mente está agora. Sempre que perceber que se afastou do presente, retorne gentilmente ao "agora".</p>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-important">⚡ Importante</span>
+      <p>Quando sua mente se distrair, isso não significa fracasso. Perceber que se distraiu já é parte do exercício. O movimento não é controlar a mente, mas notar para onde ela foi e retornar gentilmente.</p>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>Você percebe alguma tendência de sua mente em permanecer mais no passado ou no futuro? Em quais situações isso costuma acontecer?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s4_presente" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s4_presente">✓ salvo</div>
+    </div>
+  </div>
+
+  <!-- ─── SEÇÃO 5 ─── -->
+  <div class="section-card card-sky">
+    <div class="section-num num-sky">Seção 05</div>
+    <h2 class="section-title">Exercícios para fortalecer essa habilidade</h2>
+
+    <div class="subsection">
+      <div class="subsection-title"><span class="dot" style="background:var(--sky)"></span> Rastreamento no tempo</div>
+      <p>Observe onde sua mente está: passado distante, passado recente, presente, futuro próximo ou futuro distante. Sempre que perceber que se afastou demais do presente, tente retornar ao "agora".</p>
+    </div>
+
+    <div class="exercise-block" style="margin-top:16px;">
+      <span class="block-tag tag-exercise">✍️ Observando sensações físicas</span>
+      <p>Feche os olhos por alguns instantes e observe: onde existe tensão? Onde existe desconforto? Onde existe leveza? Em vez de tentar eliminar a sensação, apenas descreva com palavras simples:</p>
+      <ul>
+        <li>quente, frio, apertado, pesado, pulsando, leve…</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>O objetivo não é mudar a experiência</strong>, mas aumentar a capacidade de permanecer em contato com ela.</p>
+      <span class="response-label">O que você percebeu ao observar suas sensações?</span>
+      <textarea class="response-area" data-key="s5_sensacoes" placeholder="Escreva aqui..." rows="3"></textarea>
+      <div class="save-indicator" id="si_s5_sensacoes">✓ salvo</div>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>Ao longo da vida, você aprendeu a ignorar, controlar ou evitar certas emoções e sensações físicas? Como costuma reagir quando sente desconforto emocional?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s5_evitacao" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s5_evitacao">✓ salvo</div>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-exercise">✍️ Observando os julgamentos da mente</span>
+      <p>A mente avalia constantemente: "isso é ruim", "isso é errado", "isso é fraqueza", "isso deveria ser diferente".</p>
+      <p>Experimente perceber esses julgamentos apenas como eventos mentais.</p>
+
+      <div class="clouds-visual">
+        <div class="clouds-row">
+          <span class="cloud">isso é ruim</span>
+          <span class="cloud">sou fraco</span>
+          <span class="cloud">não deveria ser assim</span>
+        </div>
+        <div class="clouds-row">
+          <span class="cloud">isso é errado</span>
+          <span class="cloud">nunca vou melhorar</span>
+        </div>
+        <div class="clouds-caption">Como nuvens passando no céu — você não precisa lutar contra cada uma delas.</div>
+      </div>
+    </div>
+
+    <div class="exercise-block">
+      <span class="block-tag tag-reflect">💭 Reflexão</span>
+      <p>Os julgamentos que sua mente faz hoje se parecem com críticas, cobranças ou expectativas que você ouviu no passado?</p>
+      <span class="response-label">Sua reflexão:</span>
+      <textarea class="response-area" data-key="s5_julgamentos" placeholder="Escreva aqui..." rows="4"></textarea>
+      <div class="save-indicator" id="si_s5_julgamentos">✓ salvo</div>
+    </div>
+  </div>
+
+  <!-- MENSAGEM FINAL -->
+  <div class="final-card">
+    <h3>Você não precisa eliminar pensamentos difíceis ou emoções desconfortáveis para viver de forma mais livre.</h3>
+    <p>O que pode fazer diferença é aprender a se relacionar com essas experiências de maneira mais flexível, reconhecendo que elas fazem parte da sua vivência — mas não definem completamente quem você é.</p>
+    <p><em>Assim como o tabuleiro sustenta todas as peças sem precisar lutar contra elas, você pode aprender a abrir espaço para sua experiência sem precisar ser dominado por ela.</em></p>
+  </div>
+
+  <div class="footer-note">
+    <p>Este material é um suporte educativo e não substitui o acompanhamento profissional.<br>
+    Converse com seu terapeuta sobre como integrar estas práticas à sua rotina.<br>
+    Para enviar suas respostas: <strong>liviajc86@sou.unilavras.edu.br</strong></p>
+  </div>
+
+</div><!-- /container -->
+</div><!-- /app -->
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar" id="bottom-bar" style="display:none;">
+  <div class="code-display">
+    <div class="code-label">Código</div>
+    <div id="code-value">------</div>
+  </div>
+  <div class="bottom-actions">
+    <button class="btn-tool" onclick="copiarRespostas()">📋 Copiar</button>
+    <button class="btn-tool" onclick="exportar()">⬇️ Exportar</button>
+    <button class="btn-tool primary" onclick="enviarEmail()">✉️ Enviar</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'act_material_respostas_v1';
+let respostas = {};
+
+// ─── INIT ───
+function iniciar() {
+  document.getElementById('welcome-screen').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
+  document.getElementById('bottom-bar').style.display = 'flex';
+  buildChessBoard();
+  carregarRespostas();
+  atualizarCodigo();
+  attachListeners();
+}
+
+// ─── CHESS BOARD ───
+function buildChessBoard() {
+  const board = document.getElementById('chess-board');
+  const pattern = [
+    [0,1,2,0],[1,2,0,1],[2,0,1,2],[0,1,2,0]
+  ];
+  pattern.forEach((row, r) => {
+    row.forEach((type, c) => {
+      const sq = document.createElement('div');
+      sq.className = 'chess-sq ' + ((r+c)%2===0 ? 'light' : 'dark');
+      if (type === 1) sq.classList.add('white-piece');
+      if (type === 2) sq.classList.add('black-piece');
+      board.appendChild(sq);
+    });
+  });
+}
+
+// ─── LISTENERS ───
+function attachListeners() {
+  document.querySelectorAll('.response-area').forEach(ta => {
+    ta.addEventListener('input', () => {
+      const key = ta.dataset.key;
+      respostas[key] = ta.value;
+      salvarLocal();
+      atualizarCodigo();
+      const si = document.getElementById('si_' + key);
+      if (si) {
+        si.classList.add('show');
+        clearTimeout(si._t);
+        si._t = setTimeout(() => si.classList.remove('show'), 2000);
+      }
+    });
+  });
+}
+
+// ─── STORAGE ───
+function salvarLocal() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(respostas));
+}
+
+function carregarRespostas() {
+  try {
+    const dados = localStorage.getItem(STORAGE_KEY);
+    if (dados) {
+      respostas = JSON.parse(dados);
+      document.querySelectorAll('.response-area').forEach(ta => {
+        const v = respostas[ta.dataset.key];
+        if (v) ta.value = v;
+      });
+    }
+  } catch(e) {}
+}
+
+// ─── CODE ───
+function gerarCodigo() {
+  const str = JSON.stringify(respostas, Object.keys(respostas).sort());
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + ch;
+    hash |= 0;
+  }
+  return String(Math.abs(hash) % 1000000).padStart(6, '0');
+}
+
+function atualizarCodigo() {
+  const code = gerarCodigo();
+  document.getElementById('code-value').textContent = code;
+}
+
+// ─── RECOVER ───
+function recuperar() {
+  const input = document.getElementById('recover-input').value.trim();
+  const msg = document.getElementById('recover-msg');
+  if (input.length !== 6) {
+    msg.textContent = 'Digite exatamente 6 dígitos.';
+    return;
+  }
+  const dados = localStorage.getItem(STORAGE_KEY);
+  if (!dados) {
+    msg.textContent = 'Nenhum dado encontrado neste dispositivo/navegador.';
+    return;
+  }
+  try {
+    respostas = JSON.parse(dados);
+    const codeAtual = gerarCodigo();
+    if (codeAtual === input) {
+      msg.style.color = 'var(--sage)';
+      msg.textContent = 'Dados recuperados com sucesso!';
+      setTimeout(iniciar, 800);
+    } else {
+      msg.textContent = 'Código não corresponde aos dados salvos neste dispositivo.';
+    }
+  } catch(e) {
+    msg.textContent = 'Erro ao recuperar dados.';
+  }
+}
+
+// ─── EXPORT ───
+function formatarRespostas() {
+  const labels = {
+    s1_q1: 'Eu sou uma pessoa que…',
+    s1_q2: 'Eu tenho dificuldade em…',
+    s1_q3: 'Eu sou assim porque…',
+    s1_q4: 'Eu sempre…',
+    s1_q5: 'Eu nunca consigo…',
+    s1_q6: 'Os outros me veem como…',
+    s1_reflexao: '[S1] Reflexão sobre rótulos',
+    s2_historia: '[S2] Reflexão — A história sobre si mesmo',
+    s2_episodio: '[S2] Episódio difícil',
+    s2_reescrita: '[S2] Reescrita da situação',
+    s2_reflexao: '[S2] Reflexão — Outras interpretações',
+    s3_tabuleiro: '[S3] Reflexão — O tabuleiro de xadrez',
+    s3_observo: '[S3] Exercício — Eu observo',
+    s4_presente: '[S4] Reflexão — Atenção no presente',
+    s5_sensacoes: '[S5] Exercício — Sensações físicas',
+    s5_evitacao: '[S5] Reflexão — Evitação emocional',
+    s5_julgamentos: '[S5] Reflexão — Julgamentos da mente'
+  };
+  let txt = 'MATERIAL TERAPÊUTICO — O Caminho para uma Nova Forma de se Relacionar Consigo Mesmo\n';
+  txt += 'Código: ' + gerarCodigo() + '\n';
+  txt += 'Data: ' + new Date().toLocaleDateString('pt-BR') + '\n\n';
+  txt += '='.repeat(60) + '\n\n';
+  for (const [key, label] of Object.entries(labels)) {
+    const val = respostas[key] || '(não preenchido)';
+    txt += label + '\n';
+    txt += val + '\n\n';
+  }
+  return txt;
+}
+
+function copiarRespostas() {
+  navigator.clipboard.writeText(formatarRespostas()).then(() => {
+    alert('Respostas copiadas para a área de transferência!');
+  }).catch(() => {
+    alert('Não foi possível copiar automaticamente. Use Ctrl+C após selecionar o conteúdo.');
+  });
+}
+
+function exportar() {
+  const blob = new Blob([formatarRespostas()], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'act-respostas-' + gerarCodigo() + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function enviarEmail() {
+  const codigo = gerarCodigo();
+  const corpo = encodeURIComponent(formatarRespostas());
+  const assunto = encodeURIComponent('Material ACT — Respostas [Código: ' + codigo + ']');
+  const link = `mailto:liviajc86@sou.unilavras.edu.br?subject=${assunto}&body=${corpo}`;
+  
+  if (corpo.length > 2000) {
+    const ok = confirm(
+      'O conteúdo é extenso demais para um link de e-mail automático.\n\n' +
+      'Clique OK para exportar o arquivo .txt e enviar manualmente para:\nliviajc86@sou.unilavras.edu.br'
+    );
+    if (ok) exportar();
+  } else {
+    window.location.href = link;
+  }
+}
+</script>
+</body>
+</html>
